@@ -20,4 +20,4 @@ jobs:
       run: go build -o bin/ ./app/.
 
     - name: Test
-      run: go test -v ./main/.
+      run: go test -v ./app/.
