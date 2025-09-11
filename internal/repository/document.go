@@ -29,5 +29,5 @@ func (documentService) AddNewElement(context *gin.Context) {
 	}
 
 	model.Basic_documents = append(model.Basic_documents, newDocument)
-	context.JSON(http.StatusCreated, newDocument)
+	context.IndentedJSON(http.StatusCreated, newDocument)
 }
