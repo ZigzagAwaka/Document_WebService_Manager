@@ -24,6 +24,7 @@ func main() {
 	// Initialize the document service
 	service := localRepo.NewDocumentService()
 
+	// Set up the Gin router
 	router := gin.Default()
 	router.SetTrustedProxies(nil)
 	router.GET("/", GetHomePage)
@@ -32,5 +33,8 @@ func main() {
 	log.Println("Service initialized, listening on http://" + serverAddress + ".")
 
 	// Start the server (in local)
-	router.Run(serverAddress)
+	err := router.Run(serverAddress)
+	if err != nil {
+		log.Fatal("Failed to start the server:", err)
+	}
 }
