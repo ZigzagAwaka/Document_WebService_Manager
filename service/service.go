@@ -1,17 +1,18 @@
 package service
 
-import (
-	"github.com/gin-gonic/gin"
-)
+import "github.com/ZigzagAwaka/Document_WebService_Manager/model"
 
-// Common interface for all services
+// Common interface for all document services
 type Service interface {
-	// Get all elements of the current service
-	GetAllElements(context *gin.Context)
+	// Return the service keyword
+	KeyWord() string
 
-	// Get a specific element by ID
-	GetElement(context *gin.Context)
+	// Get all documents
+	GetAllElements() []model.Document
 
-	// Add a new element to the current service
-	AddNewElement(context *gin.Context)
+	// Get a specific document by ID
+	GetElement(id int) (model.Document, error)
+
+	// Add a new document
+	AddNewElement(document model.Document)
 }
