@@ -16,7 +16,18 @@ func NewDocumentService() service.Service {
 	return &documentService{}
 }
 
-// Get all documents of the current document service
 func (documentService) GetAllElements(context *gin.Context) {
-	context.JSON(http.StatusOK, model.Basic_documents)
+	context.IndentedJSON(http.StatusOK, model.Basic_documents)
+}
+
+func (documentService) AddNewElement(context *gin.Context) {
+	var newDocument model.Document
+
+	if err := context.BindJSON(&newDocument); err != nil {
+		context.String(http.StatusBadRequest, "Invalid request body: %v", err)
+		return
+	}
+
+	model.Basic_documents = append(model.Basic_documents, newDocument)
+	context.JSON(http.StatusCreated, newDocument)
 }

@@ -1,0 +1,4 @@
+curl http://localhost:8080/documents --header "Content-Type: application/json" --request "GET"
+
+
+curl http://localhost:8080/documents --include --header "Content-Type: application/json" --request "POST" --data "{\"id\": 8,\"title\": \"The secrets of biology sciences\",\"description\": \"Learn all secrets related to the scientific domain of biology.\"}"

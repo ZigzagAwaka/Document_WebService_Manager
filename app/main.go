@@ -29,6 +29,7 @@ func main() {
 	router.SetTrustedProxies(nil)
 	router.GET("/", GetHomePage)
 	router.GET("/documents", service.GetAllElements)
+	router.POST("/documents", service.AddNewElement)
 
 	log.Println("Service initialized, listening on http://" + serverAddress + ".")
 
