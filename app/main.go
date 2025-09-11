@@ -4,7 +4,8 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/ZigzagAwaka/Document_WebService_Manager/repository/local"
+	localRepo "github.com/ZigzagAwaka/Document_WebService_Manager/internal/repository"
+
 	"github.com/gin-gonic/gin"
 )
 
@@ -21,7 +22,7 @@ func main() {
 	log.Println("Initializing Service...")
 
 	// Initialize the document service
-	service := local.NewDocumentService()
+	service := localRepo.NewDocumentService()
 
 	router := gin.Default()
 	router.SetTrustedProxies(nil)
