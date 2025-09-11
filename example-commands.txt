@@ -1,3 +1,6 @@
+curl http://localhost:8080/documents
+
+
 curl http://localhost:8080/documents --header "Content-Type: application/json" --request "GET"
 
 
