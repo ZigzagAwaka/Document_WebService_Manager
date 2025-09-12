@@ -51,6 +51,9 @@ func (r *documentRepository) addNewElement(context *gin.Context) {
 		context.String(http.StatusBadRequest, "Invalid request body: %v", err)
 		return
 	}
-	r.service.AddNewElement(newElement)
+	if err := r.service.AddNewElement(newElement); err != nil {
+		context.String(http.StatusConflict, "Error when adding the element: %v", err)
+		return
+	}
 	context.IndentedJSON(http.StatusCreated, newElement)
 }

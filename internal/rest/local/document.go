@@ -26,10 +26,13 @@ func (documentService) GetElement(id int) (model.Document, error) {
 			return document, nil
 		}
 	}
-	return model.Document{}, nil
-	//context.String(http.StatusNotFound, "Document with ID %v not found", id)
+	return model.Document{}, model.ErrDocNotFound(id)
 }
 
-func (documentService) AddNewElement(document model.Document) {
-	Basic_documents = append(Basic_documents, document)
+func (s documentService) AddNewElement(document model.Document) error {
+	if _, err := s.GetElement(document.ID); err != nil {
+		Basic_documents = append(Basic_documents, document)
+		return nil
+	}
+	return model.ErrDocAlreadyExists(document.ID)
 }

@@ -14,5 +14,5 @@ type Service interface {
 	GetElement(id int) (model.Document, error)
 
 	// Add a new document
-	AddNewElement(document model.Document)
+	AddNewElement(document model.Document) error
 }
