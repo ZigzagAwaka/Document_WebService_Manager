@@ -11,6 +11,8 @@ The program will start a small server from which users can consult the stored do
 
 The server can be comunicated with by consulting the local address on a browser, or by using one of the example commands listed in [example-commands.txt](https://github.com/ZigzagAwaka/Document_WebService_Manager/blob/main/example-commands.txt) in a command prompt window.
 
-### Notes
+### Structure
 
 The documents are stored in memory for this simple example service. But this system can be replaced by a database or any other storage solution.
+
+For example, the Service interface can be easily used to generate a struct that will manage documents in a database instead of locally. This can be made by implementing the interface and using the newly created service in the current handler.
