@@ -15,4 +15,7 @@ type Service interface {
 
 	// Add a new document
 	AddNewElement(document model.Document) error
+
+	// Delete a document by ID
+	DeleteElement(id int) error
 }

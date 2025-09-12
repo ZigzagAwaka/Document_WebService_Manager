@@ -25,6 +25,7 @@ func (r *documentHandler) Init(router *gin.Engine) {
 	router.GET("/"+key, r.getAllElements)
 	router.GET("/"+key+"/:id", r.getElement)
 	router.POST("/"+key, r.addNewElement)
+	router.DELETE("/"+key+"/:id", r.deleteElement)
 }
 
 func (r *documentHandler) getAllElements(context *gin.Context) {
@@ -56,4 +57,17 @@ func (r *documentHandler) addNewElement(context *gin.Context) {
 		return
 	}
 	context.IndentedJSON(http.StatusCreated, newElement)
+}
+
+func (r *documentHandler) deleteElement(context *gin.Context) {
+	id, err := strconv.Atoi(context.Param("id"))
+	if err != nil {
+		context.String(http.StatusBadRequest, "Invalid request body: %v", err)
+		return
+	}
+	if err := r.service.DeleteElement(id); err != nil {
+		context.String(http.StatusNotFound, "Error when deleting the element: %v", err)
+		return
+	}
+	context.String(http.StatusAccepted, "Element successfully deleted")
 }

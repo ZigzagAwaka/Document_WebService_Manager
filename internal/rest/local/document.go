@@ -36,3 +36,13 @@ func (s documentService) AddNewElement(document model.Document) error {
 	}
 	return model.ErrDocAlreadyExists(document.ID)
 }
+
+func (s documentService) DeleteElement(id int) error {
+	for i, document := range Basic_documents {
+		if id == document.ID {
+			Basic_documents = append(Basic_documents[:i], Basic_documents[i+1:]...)
+			return nil
+		}
+	}
+	return model.ErrDocNotFound(id)
+}
