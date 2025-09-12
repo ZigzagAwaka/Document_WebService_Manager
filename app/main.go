@@ -22,8 +22,8 @@ func main() {
 	log.SetFlags(0)
 	log.Println("Initializing Service...")
 
-	// Initialize the document repository
-	repository := repo.NewRepository(local.NewLocalDocumentService())
+	// Initialize the document management service
+	repository := repo.NewHandler(local.NewLocalDocumentService())
 
 	// Set up the Gin router
 	router := gin.Default()
